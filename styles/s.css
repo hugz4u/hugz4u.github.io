@@ -1,0 +1,141 @@
+*,
+:after,
+:before {
+    box-sizing:border-box
+}
+
+/* Barlow from: https://tribby.com/fonts/barlow/ */
+
+@font-face { font-family: 'Barlow-Medium';
+             font-weight: 500;
+             src: url('../fonts/Barlow-Medium.woff2') format('woff2');
+           }
+@font-face { font-family: 'Barlow-Regular';
+             src: url('../fonts/Barlow-Regular.woff2') format('woff2');
+           }
+@font-face { font-family: 'Barlow-Regular';
+             font-style: italic;
+             src: url('../fonts/Barlow-Italic.woff2') format('woff2');
+           }
+
+:root {
+    --fs: 1rem;
+    
+    /* light theme */
+    --bglight: #FAFBFE;
+    --textlight: #13141B;
+    --selectionbg: #F0F3FE;
+    --errorbg: #6F3A3A;
+    --warningbg: #9D8018;
+    --successbg: #4C753B;
+    --alt: #5D82CF;
+    
+    /* dark theme*/
+    --bgdark: #13141B;
+    --textdark: #FAFBFE;
+    --selectiondarkbg: #2C2E36;
+    --errordarkbg: #C06868;
+    --warningdarkbg: #D1B86C;
+    --successdarkbg: #7DB664; 
+    --altdarkbg: #98BAFE;
+    
+    --linktext: #82848D;
+    --linkhover: #B7BAC4;
+
+}
+
+body,
+html {
+    text-rendering:optimizeLegibility;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    touch-action:manipulation;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    font-size:var(--fs);
+    font-family: 'Barlow-Regular' !important;
+    color:var(--textlight);
+    background-color:var(--bglight);
+    /* cursor from: https://kenney.nl/assets */
+    cursor: url("../assets/pointer/pointer_scifi_b.svg"), pointer !important;
+}
+
+.zdog-canvas {
+    /* box-shadow: 0 0 20px var(--warningdarkbg) inset; */
+    display: block;
+    margin: 0;
+    padding: 8px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-124%, -50%);
+    transform: translate(-124%, -50%);
+}
+
+::selection {
+    background-color:var(--selectionbg);
+}
+
+h1,h2,h3 {
+    font-family: 'Barlow-Medium' !important;
+    color:var(--textlight);
+}
+
+a, canvas {
+    cursor: url("../assets/pointer/pointer_scifi_b.svg"), auto !important;
+    color:var(--linktext);
+    text-decoration-line:underline;
+    text-decoration-style:solid;
+    text-decoration-color:var(--linktext);
+    text-decoration-thickness:.1em;
+    text-underline-offset:1.8px;
+    border-radius:1px;
+}
+
+a:hover { color:var(--linkhover);
+          text-decoration-color:var(--linkhover); }
+
+.container {
+    display: block;
+    margin: 0;
+    padding: 8px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+/* Dark theme support based on OS' theme */
+@media (prefers-color-scheme: dark) {
+    html,
+    body { color:var(--textdark);
+           background-color:var(--bgdark);
+           padding: 0;
+         }
+
+    ::selection {
+        background-color:var(--selectiondarkbg);
+    }
+
+    h1,h2,h3 {
+        font-family: 'Barlow-Medium' !important;
+        color:var(--textdark);
+    }
+
+    a { cursor: url("../assets/pointer/pointer_scifi_b.svg"), auto !important;
+        color:var(--linktext);
+        text-decoration-line:underline;
+        text-decoration-style:solid;
+        text-decoration-color:var(--linktext);
+        text-decoration-thickness:.1em;
+        text-underline-offset:1.8px;
+        border-radius:1px
+      }
+
+    a:hover { color:var(--linkhover);
+              text-decoration-color:var(--linkhover);
+            }
+}
