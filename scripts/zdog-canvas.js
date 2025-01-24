@@ -10,6 +10,9 @@ const PI = Zdog.TAU/2;
 var gray = '#82848D';
 var cyan = '#58ACF2';
 var blue = '#3E88C5';
+var rose = '#E886A7';
+var rosedark = '#BB6784';
+var rosedarker = '#97526A';
 
 // ---- canvas ---- //
 
@@ -17,79 +20,60 @@ var illo = new Zdog.Illustration({
     element: '.zdog-canvas',
     dragRotate: true,
     resize: false,
-    zoom: 11/25,
+    zoom: 11/28,
 });
 
+// ---- haskell's logo ---- //
 
-// ---- agda's chicken  ---- //
-
-let face = new Zdog.Shape({
+let angle = new Zdog.Shape({
     addTo: illo,
     path: [
-        { x:  8, y: -24  },
-        { x: -24, y:  16 },
+        { x:  -8  , y: -40 },
+        { x:  -32 , y: -80 },
         
-        { x: -24, y:  16 },
-        { x: -4,  y:  16 },
-
-        { x: -4,  y:  16 },
-        { x: -4,  y:  40 },
+        { x:  -8  , y: -40 },
+        { x:  -32  , y: 0 },
     ],
-    translate: { z: -40 },
+    translate: {z: -120},
     closed: false,
     stroke: 16,
-    color: gray,
+    color: rosedarker,
 });
 
-let belly = new Zdog.Ellipse({
-    addTo: illo,
-    diameter: 88,
-    quarters: 2,
-    translate: { x: 40, y: 40, z: -40 },  
-    rotate: { z: PI/2 },  
-    stroke: 16,
-    color: gray,
+angle.copy ({
+    translate : { x: 32, z: -120},
+    color: rosedark,
+    
 });
 
-
-let tailfeather = new Zdog.Shape({
+let leg = new Zdog.Shape({
     addTo: illo,
     path: [
-        { x:  -16, y: -16 },
-        { x: -16, y:  2 },
+        { x:  24  , y: -40 },
+        { x:  48  , y: 0 },
     ],
-    translate: { x: 100, y: 36, z: -40 },
+    translate: {z: -120},
     closed: false,
     stroke: 16,
-    color: gray,
+    color: rosedark,
 });
 
-
-let tailfeatherup = new Zdog.Shape({
+let line = new Zdog.Shape({
     addTo: illo,
     path: [
-        { x: 8, y: -16 },
-        { x: -16, y:  8 },
+        { x:  52  , y: -48 },
+        { x:  88  , y: -48 },
     ],
-    translate: { x: 100, y: 8, z: -40  },
+    translate: {z: -120},
     closed: false,
     stroke: 16,
-    color: gray,
+    color: rose,
 });
 
+line.copy ({
+    translate: {y: 24, z: -120},
 
-let agda3 = new Zdog.Shape({
-    addTo: illo,
-    path: [
-        { x:  12, y: -24 },
-        { x: -24, y:  12 },
-    ],
-    translate: { x: 72, y: 4, z: -40 },
-    closed: false,
-    stroke: 16,
-    color: gray,
 });
-
 
 // ---- flake ---- //
 
@@ -138,44 +122,78 @@ lambda.copy({
     color: cyan,
 });
 
-// ----- animate : spin ----- //
+// ---- agda's chicken  ---- //
 
-// var isSpinning = true;
-// var ticker = 0;
-// var cycleCount = 180;
+let face = new Zdog.Shape({
+    addTo: illo,
+    path: [
+        { x:  8, y: -24  },
+        { x: -24, y:  16 },
+        
+        { x: -24, y:  16 },
+        { x: -4,  y:  16 },
 
-// function animate() {
-//   spin();
-//   illo.updateRenderGraph();
-//   requestAnimationFrame( animate );
-// }
+        { x: -4,  y:  16 },
+        { x: -4,  y:  40 },
+    ],
+    translate: { z: -40 },
+    closed: false,
+    stroke: 16,
+    color: gray,
+});
 
-// function spin() {
-//   if ( !isSpinning ) {
-//     return;
-//   }
-//   var progress = ticker/cycleCount;
-//   var turn = Math.floor( progress % 4 );
-//   var theta = Zdog.easeInOut( progress % 1, 3 ) * TAU;
-//   if ( turn == 0 || turn == 2 ) {
-//     illo.rotate.y = theta;
-//   } else if ( turn == 1 ) {
-//     illo.rotate.x = theta;
-//   } else if ( turn == 3 ) {
-//     illo.rotate.z = theta;
-//   }
-//   ticker++;
-// }
+let belly = new Zdog.Ellipse({
+    addTo: illo,
+    diameter: 88,
+    quarters: 2,
+    translate: { x: 40, y: 40, z: -40 },  
+    rotate: { z: PI/2 },  
+    stroke: 16,
+    color: gray,
+});
 
-// animate();
+let connect = new Zdog.Shape({
+    addTo: illo,
+    path: [
+        { x:  -16, y: -16 },
+        { x: -16, y:  2 },
+    ],
+    translate: { x: 100, y: 36, z: -40 },
+    closed: false,
+    stroke: 16,
+    color: gray,
+});
 
+let tailfeather = new Zdog.Shape({
+    addTo: illo,
+    path: [
+        { x: 8, y: -16 },
+        { x: -16, y:  8 },
+    ],
+    translate: { x: 100, y: 8, z: -40  },
+    closed: false,
+    stroke: 16,
+    color: gray,
+});
+
+let tailfeatherup = new Zdog.Shape({
+    addTo: illo,
+    path: [
+        { x:  12, y: -24 },
+        { x: -24, y:  12 },
+    ],
+    translate: { x: 72, y: 4, z: -40 },
+    closed: false,
+    stroke: 16,
+    color: gray,
+});
 
 // ---- animate ---- //
 
 var isSpinning = true;
-var rotateSpeed = -TAU/120;
-var xClock = 0;
-var then = new Date() - 1/120;
+var rotateSpeed = -TAU/72;
+var clock = 0;
+var then = new Date() - 1/72;
 
 function animate() {
     update();
@@ -185,20 +203,17 @@ function animate() {
 
 animate();
 
-// --- update -- //
+// ---- update ---- //
 
 function update() {
     var now = new Date();
     var delta = now - then;
-    // auto rotate
     if ( isSpinning ) {
         var theta = rotateSpeed/120 * delta * -1;
         illo.rotate.y += theta;
-        xClock += theta/4;
-        illo.rotate.x = Math.sin( xClock ) * TAU/12;
+        clock += theta/4;
+        illo.rotate.z = Math.cos( clock ) * TAU/12;
     }
-
     illo.updateGraph();
-
     then = now;
 }
